@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* @font-face {
+  font-family: 'Noto Sans Symbols 2';
+  src: url('fonts/NotoSansSymbols2-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  } */
+  
+  h1 {
+      display: flex;
+      margin-bottom: 0;
+      align-items: center;
+      font-family: bitter, sans-serif;
+      font-size: calc(13px + 1vw);
+      color: white;
+  }
+.app-layout {
+  display: flex;
+  min-height: 100vh;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* .sidebar {podpowiedziane, zastąpiłem wersją z poprzedniej apki
+  width: 220px;
+  background: #2da1d3;
+  padding: 24px;
+} */
+
+
+.app-layout {
+  display: grid;
+  grid-template-columns: clamp(150px, 18vw, 230px) 1fr;
+  min-height: 100vh;
+  background: #2c9fd1;
+  color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.main-content {
+  flex: 1;
+  background: #f8d24b;
+}
+
+@media (max-width: 600px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 15px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
+
+.logo {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.book-icon {
+  width: 55px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 1.7rem;
+  font-weight: bold;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card {
+    margin: 20px;
+    position: relative;
+    border-radius: 10px;
+    text-align: center;
+    background: white;
+    color: #1a6180;
+    animation: slide-up 0.4s ease;
+    transition: all 0.2s ease;
+}
+
