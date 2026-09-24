@@ -9,10 +9,8 @@ export default function Home() {
           Keep track of the books you have read and write your own reviews.
         </p>
 
-        <Link href="/library"   className="book-card">
-          <br />
+        <Link href="/library"   className="primary-button rounded bg-black px-6 py-3 text-white">
           Go to library
-          <br />
         </Link>
       </main>
   );
