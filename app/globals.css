@@ -248,10 +248,14 @@ body {
 .area {
     border: none;
     border-bottom: white 1px dotted;
-    background: #2c9fd1;
     outline: none;
     color: white;
-    margin-top: 7px;
+
+    width: 100%;
+    border: none;
+    border-bottom: 1px dotted white;
+    background: transparent;
+
 }
 .placeholder {
     margin-top: 7px;
@@ -261,6 +265,19 @@ body {
     font-size: 1rem;
     pointer-events: none;
     /* stops from selecting the placeholder text in the input fields */
+    bottom: 2px;
+
+}
+
+.book-form{
+  padding: 0 12px;
+
+  position: relative;
+  margin-top: 24px;
+
+}
+.form-field {
+  position: relative;
 }
 #new {
     width: 80px;
