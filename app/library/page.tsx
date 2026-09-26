@@ -15,15 +15,19 @@ type Book = {
 function BookCard(props: Book) {
   const { deleteBook } = useContext(BooksContext);
   return (
-    <Link href={`/library/${props.id}`} className = "book-card">
-      <button className="removal-button" onClick={() => {
+    <div className = "book-card">
+      <button className="removal-button" onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
           if (confirm("Are you sure you want to delete this book?")) {
             deleteBook(props.id);
           }
       }}>x</button><br></br>
+      <Link href={`/library/${props.id}`} >
       <p>Title: {props.title}</p>
       <p>Author: {props.author}</p>
-    </Link>
+      </Link>
+    </div>
   );
 }
 

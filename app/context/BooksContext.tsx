@@ -12,14 +12,14 @@ export type Book = {
 
 type BooksContextType = {
   books: Book[];
-  addBook: (title: string, author: string) => void;
+  addBook: (title: string, author: string) => boolean;
   deleteBook: (id: number) => void;
   updateDescription: (id: number, newDescription: string) => void;
 };
 
 export const BooksContext = createContext<BooksContextType>({
   books: [],
-  addBook: () => {},
+  addBook: () => false,
   deleteBook: () => {},
   updateDescription: () => {}
 });
@@ -42,32 +42,45 @@ const startingBooks: Book[] = [
 export function BooksProvider({ children }: { children: ReactNode }) {
   const [books, setBooks] = useState<Book[]>(startingBooks);
 
+  
   function addBook(title: string, author: string) {
-    const newBook: Book = {
+
+    const bookExists = books.some(
+    book => (book.title.trim().toLowerCase() === title.trim().toLowerCase() &&
+    book.author.trim().toLowerCase() === author.trim().toLowerCase()
+    ));
+
+    if (bookExists){
+      window.alert("Book already exists");
+      return false;
+    } else {
+      const newBook: Book = {
       id: Date.now(),
       title: title,
       author: author,
       description: ""
-    };
+      };
+      setBooks(previousBooks => [...previousBooks, newBook]);
+      return true
+    }
 
-    setBooks(previousBooks => [...previousBooks, newBook]);
+  }
+  
+
+  function deleteBook(id: number) {
+  setBooks(previousBooks =>
+      previousBooks.filter(book => book.id !== id)
+  );
   }
 
-
-    function deleteBook(id: number) {
-    setBooks(previousBooks =>
-        previousBooks.filter(book => book.id !== id)
-    );
-    }
-
-    function updateDescription(id: number, newDescription: string){
-        setBooks(previousBooks =>
-            previousBooks.map(book =>
-                book.id === id
-                    ? { ...book, description: newDescription }
-                    : book
-        ));
-    }
+  function updateDescription(id: number, newDescription: string){
+      setBooks(previousBooks =>
+          previousBooks.map(book =>
+              book.id === id
+                  ? { ...book, description: newDescription }
+                  : book
+      ));
+  }
 
   return (
     <BooksContext.Provider value={{ books, addBook, deleteBook, updateDescription }}>

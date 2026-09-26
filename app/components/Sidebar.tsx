@@ -14,9 +14,12 @@ export default function Sidebar() {
   const { addBook } = useContext(BooksContext);
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    addBook(title, author);
-    setTitle("");
-    setAuthor("");
+
+    const added = addBook(title, author);
+    if (added){
+      setTitle("");
+      setAuthor("");
+    }
   }
 
   return (
@@ -44,7 +47,7 @@ export default function Sidebar() {
         <form className="book-form" onSubmit={handleSubmit}>
             <div className="form-field">
             <input className="area" value={title} type='text' id="title-area" required onChange={(event) => setTitle(event.target.value)}/>
-            <span className="placeholder" id="title-placeholder">Book title</span>
+            <span className="placeholder" id="title-placeholder">New book title</span>
             </div>
             <br/>
             <br/>

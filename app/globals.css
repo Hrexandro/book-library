@@ -1,97 +1,5 @@
 @import "tailwindcss";
 
-/* 
-  h1 {
-      display: flex;
-      margin-bottom: 0;
-      align-items: center;
-      font-family: bitter, sans-serif;
-      font-size: calc(13px + 1vw);
-      color: white;
-  }
-.app-layout {
-  display: flex;
-  min-height: 100vh;
-}
-
-
-
-
-.app-layout {
-  display: grid;
-  grid-template-columns: clamp(150px, 18vw, 230px) 1fr;
-  min-height: 100vh;
-  background: #2c9fd1;
-  color: white;
-}
-
-.main-content {
-  flex: 1;
-  background: #f8d24b;
-}
-
-@media (max-width: 600px) {
-  .app-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .sidebar nav {
-    display: flex;
-    gap: 15px;
-  }
-}
-
-.home {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.logo {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.book-icon {
-  width: 55px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  font-size: 1.7rem;
-  font-weight: bold;
-  line-height: 1.05;
-  white-space: nowrap;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.book-card {
-    margin: 20px;
-    position: relative;
-    border-radius: 10px;
-    text-align: center;
-    background: white;
-    color: #1a6180;
-    animation: slide-up 0.4s ease;
-    transition: all 0.2s ease;
-}
- */
 
  * {
   box-sizing: border-box;
@@ -267,6 +175,13 @@ body {
     /* stops from selecting the placeholder text in the input fields */
     bottom: 2px;
 
+}
+
+.description-editor {
+  width: 100%;
+  min-height: 240px;
+  padding: 10px;
+  resize: vertical;
 }
 
 .book-form{
