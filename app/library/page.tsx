@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { BooksContext } from "../context/BooksContext";
 import Link from "next/link";
+import { filterBooks } from "../utils/filterBooks";
 
 type Book = {
   id: number;
@@ -35,15 +36,34 @@ function BookCard(props: Book) {
 
 export default function LibraryPage() {
   const { books } = useContext(BooksContext);
-  const listBooks = books.map(book => <BookCard
+  const [query, setQuery] = useState("");
+
+  const searchText = query.trim().toLowerCase();
+
+  const filteredBooks = filterBooks(books, query);
+  const listBooks = filteredBooks.map(book => <BookCard
   key = {book.id}
   id = {book.id}
   title = {book.title}
   author = {book.author}
   />)
   return (
-    <main id = "book-cards">
-      {listBooks}
-    </main>
+    <>
+      <input
+        id="book-search"
+        type="search"
+        placeholder="Search by title or author..."
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+
+    <div id="book-cards">
+      {filteredBooks.length === 0 ? (
+        <p>No books found.</p>
+      ) : (
+        listBooks
+      )}
+    </div>
+    </>
   );
 }

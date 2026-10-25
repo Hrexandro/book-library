@@ -28,7 +28,23 @@ body {
 }
 
 
+#book-search {
+  display: block;
+  width: min(100%, 400px);
+  height: 44px;
+  padding: 10px 15px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  color: #06496b;
+  font-size: 1rem;
+  outline: none;
+}
 
+#book-search:focus {
+  border-color: #2c9fce;
+}
 
 .sidebar {
   background-color: #2c9fce;
@@ -132,7 +148,6 @@ body {
 }
 
 .book-card {
-    margin: 20px;
     position: relative;
     border-radius: 10px;
     text-align: center;
