@@ -3,6 +3,8 @@ import { useParams } from "next/navigation";
 import { useContext } from "react";
 import { BooksContext} from "../../context/BooksContext";
 import { useState } from "react";
+import Image from "next/image";
+import { supabase } from "../../utils/supabase";
 
 export default function BookDetails() {
   const params = useParams();
@@ -13,7 +15,12 @@ export default function BookDetails() {
   
   if (!currentBook) {
   return <p>Book not found.</p>;
-  } else return (
+  }
+  const coverUrl = currentBook.coverPath
+    ? supabase.storage.from("book-covers").getPublicUrl(currentBook.coverPath).data.publicUrl
+    : null;
+  
+  return (
     <div className = "book-card">
       {isEditing ? (
         <button className="removal-button" onClick={() => {
@@ -26,6 +33,15 @@ export default function BookDetails() {
            setIsEditing(true);
         }}>edit</button>
       )}<br></br>
+      {coverUrl && (
+        <Image
+          src={coverUrl}
+          alt={`Cover of ${currentBook.title}`}
+          width={120}
+          height={170}
+          className="book-cover"
+        />
+      )}
       <p>Title: {currentBook.title}</p>
       <p>Author: {currentBook.author}</p>
       <br></br>

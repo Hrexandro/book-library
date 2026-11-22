@@ -26,7 +26,12 @@ body {
   grid-template-columns: clamp(170px, 18vw, 230px) 1fr;
   min-height: 100vh;
 }
-
+.book-cover {
+  display: block;
+  object-fit: cover;
+  border-radius: 5px;
+  margin: 0 auto 12px;
+}
 
 #book-search {
   display: block;

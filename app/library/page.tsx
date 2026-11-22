@@ -2,19 +2,17 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useContext } from "react";
-import { BooksContext } from "../context/BooksContext";
+import { BooksContext, type Book } from "../context/BooksContext";
 import Link from "next/link";
 import { filterBooks } from "../utils/filterBooks";
-
-type Book = {
-  id: number;
-  title: string;
-  author: string;
-};
+import { supabase } from "../utils/supabase";
 
 
 function BookCard(props: Book) {
   const { deleteBook } = useContext(BooksContext);
+  const coverUrl = props.coverPath
+  ? supabase.storage.from("book-covers").getPublicUrl(props.coverPath).data.publicUrl
+  : null;
   return (
     <div className = "book-card">
       <button className="removal-button" onClick={(e) => {
@@ -24,9 +22,18 @@ function BookCard(props: Book) {
             deleteBook(props.id);
           }
       }}>x</button><br></br>
-      <Link href={`/library/${props.id}`} >
       <p>Title: {props.title}</p>
       <p>Author: {props.author}</p>
+      <Link href={`/library/${props.id}`} >
+      {coverUrl && (
+        <Image
+          src={coverUrl}
+          alt={`Cover of ${props.title}`}
+          width={120}
+          height={170}
+          className="book-cover"
+        />
+      )}
       </Link>
     </div>
   );
@@ -46,6 +53,8 @@ export default function LibraryPage() {
   id = {book.id}
   title = {book.title}
   author = {book.author}
+  description={book.description}
+  coverPath={book.coverPath}
   />)
   return (
     <>

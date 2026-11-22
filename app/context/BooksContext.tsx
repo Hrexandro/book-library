@@ -8,6 +8,7 @@ export type Book = {
   title: string;
   author: string;
   description: string;
+  coverPath?: string;
 };
 
 type BooksContextType = {
@@ -29,13 +30,15 @@ const startingBooks: Book[] = [
     id: 1,
     title: "Hobbit",
     author: "J.R.R. Tolkien",
-    description: "Bilbo Baggins enjoys a quiet life until the wizard Gandalf sends him on an unexpected journey with a company of dwarves. Their goal is to reclaim their homeland and treasure from the dragon Smaug."
+    description: "Bilbo Baggins enjoys a quiet life until the wizard Gandalf sends him on an unexpected journey with a company of dwarves. Their goal is to reclaim their homeland and treasure from the dragon Smaug.",
+    coverPath: "hobbit.png"
   },
   {
     id: 2,
     title: "Dune",
     author: "Frank Herbert",
-    description: "Paul Atreides moves with his family to Arrakis, a harsh desert planet and the only source of the valuable spice melange. Political intrigue, betrayal and conflict draw him into the struggle for control of the planet."
+    description: "Paul Atreides moves with his family to Arrakis, a harsh desert planet and the only source of the valuable spice melange. Political intrigue, betrayal and conflict draw him into the struggle for control of the planet.",
+    coverPath: "dune.png"
   }
 ];
 
